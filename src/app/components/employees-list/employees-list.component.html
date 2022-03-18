@@ -1,0 +1,34 @@
+<div class="container-xl">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Listado <b>Empleados</b></h2></div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-success btn-sm" [routerLink]="['add-employees']"><i class="fa fa-plus"></i>Nuevo</button> 
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employees of listEmployeess">
+                        <td>{{employees.firstName}}</td>
+                        <td>{{employees.lastName}}</td>
+                        <td>{{employees.email}}</td>
+                        <td>
+                            <a [routerLink]="['edit-employees', employees]" [state]=employees class="edit" title="Editar" data-toggle="tooltip"><i class="bi bi-pencil-square"></i></a>
+                            <a (click)="deleteEmployees(employees)" class="delete" title="Eliminar" data-toggle="tooltip"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>    
+                </tbody>
+            </table>
+        </div>
+    </div>  
+</div> 

@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="mb-3 text-center">Crear Actividad</h3>
+          </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <label for="actividad" class="form-label">Actividad</label>
+            <input type="text" id="actividad" [(ngModel)]="activities.description" aria-describedby="Obligatorio" class="form-control" placeholder="Actividad">
+            <div class="input-group-prepend">
+                <span *ngIf="!activities.description" class="input-group-text alert-danger" id="Obligatorio" >Obligatorio</span>
+            </div>
+        </div>
+     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="empleados" class="form-label">Empleados 🧔</label>
+            <select class="form-select" id="empleados" [(ngModel)]="idSeleccionado"  aria-describedby="Obligatorio" (click)="getEmployees()">
+                 <option *ngFor="let employees of listEmployees" [ngValue]="employees.id">{{employees.firstName}}</option> 
+            </select>
+            <div class="input-group-prepend">
+                <span *ngIf="!idSeleccionado" class="input-group-text alert-danger" id="Obligatorio" >Obligatorio</span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="horas" class="form-label">Horas Estimadas</label>
+            <input type="number" id="horas" [(ngModel)]="activities.executionHour" aria-describedby="Obligatorio" class="form-control" placeholder="Horas">
+            <div class="input-group-prepend">
+                <span *ngIf="!activities.executionHour" class="input-group-text alert-danger" id="Obligatorio" >Obligatorio</span>
+            </div>
+          </div>
+    </div>
+    <div class="row">
+          <div class="col-md-6">
+            <label for="fecha" class="form-label">Fecha Estimadas</label>
+            <input type="date" id="fecha" [(ngModel)]="dateString" aria-describedby="Obligatorio" class="form-control" placeholder="Fecha">
+            <div class="input-group-prepend">
+                <span *ngIf="!dateString" class="input-group-text alert-danger" id="Obligatorio" >Obligatorio</span>
+            </div>
+    </div>
+    <div class="col-md-6">
+            <label for="estado" class="form-label">Estado</label>
+            <select class="form-select" id="estado" [(ngModel)]="activities.statusActivity"  aria-describedby="Obligatorio" (click)="getStatus()">
+                <option *ngFor="let status of listStatusActivity" [ngValue]="status.id">{{status.description}}</option> 
+           </select>  
+          </div>
+     </div>
+    <div class="row">
+          <div class="col-md-6">
+            <label for="dia" class="form-label">Dias tardanza</label>
+            <input type="number" id="dia" [(ngModel)]="activities.lateDay"  class="form-control" placeholder="Cantidad" readonly>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <button style="margin-right:10px"  *ngIf="activities.description && activities.employeeId && activities.executionHour
+            && dateString  " class="btn btn-success btn-sm btn-block" (click)="editActivities()">Modificar</button>
+            <button class="btn btn-success btn-sm btn-block" [routerLink]="['/activities']">Volver</button>
+        </div>
+    </div>
+    </div>
